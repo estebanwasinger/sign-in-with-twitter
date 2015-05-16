@@ -46,9 +46,12 @@ public class CallbackServlet extends HttpServlet {
         try {
             twitter.getOAuthAccessToken(requestToken, verifier);
             request.getSession().removeAttribute("requestToken");
+            request.getSession().setAttribute("url",twitter.showUser(twitter.getId()).getProfileImageURL());
+
         } catch (TwitterException e) {
             throw new ServletException(e);
         }
+
         response.sendRedirect(request.getContextPath() + "/");
     }
 }

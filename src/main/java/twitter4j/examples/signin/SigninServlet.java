@@ -36,12 +36,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import twitter4j.conf.ConfigurationBuilder;
 
 public class SigninServlet extends HttpServlet {
     private static final long serialVersionUID = -6205814293093350242L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Twitter twitter = new TwitterFactory().getInstance();
+        ConfigurationBuilder cb = new ConfigurationBuilder();
+        cb.setDebugEnabled(true)
+          .setOAuthConsumerKey("xxxxx")
+          .setOAuthConsumerSecret("xxxxx");
+        TwitterFactory tf = new TwitterFactory(cb.build());
+        Twitter twitter = tf.getInstance();
+
         request.getSession().setAttribute("twitter", twitter);
         try {
             StringBuffer callbackURL = request.getRequestURL();
@@ -55,6 +62,8 @@ public class SigninServlet extends HttpServlet {
         } catch (TwitterException e) {
             throw new ServletException(e);
         }
+
+
 
     }
 }

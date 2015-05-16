@@ -11,9 +11,10 @@
     <a href="signin"><img src="./images/Sign-in-with-Twitter-darker.png"/></a>
 </tag:notloggedin>
 <tag:loggedin>
-    <h1>Welcome ${twitter.screenName} (${twitter.id})</h1>
+    <h1>Welcome ${twitter.screenName} (${twitter.id}) </h1>
 
     <form action="./post" method="post">
+    <img src=${url}>
         <textarea cols="80" rows="2" name="text"></textarea>
         <input type="submit" name="post" value="update"/>
     </form>
